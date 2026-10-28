@@ -1,0 +1,7 @@
+# Aset foto editorial
+
+`family-editorial.jpg` dipakai pada hero dan onboarding. Generated dengan tool imagegen bawaan, kemudian dikonversi ke JPEG kualitas 84 untuk aset website. Ukuran asli 1536 × 1024. Foto telah diperiksa sebelum dipasang. Subjek hanya ilustratif, bukan keluarga pengguna atau pelanggan; label AI ada di tampilan dan alt text.
+
+## Prompt final
+
+Create one photorealistic editorial lifestyle photograph for a premium Indonesian family companion website. Wide landscape 3:2 frame, no text, no collage, no logos, no graphic elements. Quiet authentic moment: a young adult Southeast Asian Indonesian mother with medium tan skin and dark hair tied loosely, in an ivory cotton blouse, sitting on a warm beige linen sofa, holding her fully clothed 10-month-old baby in a soft muted burgundy knitted outfit on her lap. Baby and mother are looking warmly at each other, natural candid expression, realistic hands and anatomy. Contemporary comfortable modest home, softly defocused ivory curtains and walnut furnishings, warm natural late afternoon window light, subtle film grain, honest skin texture, premium Kinfolk-style editorial photographic craft. Camera at eye level with medium distance, subjects centered slightly right with plenty of breathing room and visible sofa around, no posed advertising smile, no medical equipment, no health claims, no luxury jewelry. Palette warm ivory, taupe, walnut, plum/burgundy accent. This is illustrative AI imagery, not a real customer or testimonial.
