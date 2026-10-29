@@ -3,7 +3,7 @@ import { useStore, buildDemoState } from "../store";
 import { SOURCES, STAGES } from "../data";
 import { navigate } from "../lib/router";
 import { Brand } from "../components/AppShell";
-import { DemoTag, Icon, SkipLink } from "../components/ui";
+import { Icon, SkipLink } from "../components/ui";
 import { AlbumHeadline, AlbumPhoto, ReadingProgress, Reveal, ScrollStory, useMotionSettings } from "../components/ScrollExperience";
 import type { Screen } from "../types";
 
@@ -86,7 +86,6 @@ export function Landing() {
               </button>
               <a className="premium-text-action" href="#beda">Lihat cara kerjanya<Icon name="chevron" size={15} /></a>
             </div>
-            <p className="premium-private"><Icon name="shield" size={14} />Tanpa akun. Tersimpan di perambanmu.</p>
           </div>
           <div className="hero-visual"><AlbumPhoto /><div className="hero-visual-note"><strong>Rencana. Menu. Catatan.</strong><p>Satu tempat untuk membagi peran dan menyiapkan hari bersama.</p></div></div>
         </section>
@@ -117,7 +116,6 @@ export function Landing() {
             </ul>
             <div className="premium-stage-action">
               <button type="button" className="btn btn-primary" onClick={() => navigate("mulai", { stage: stage.id })}>Mulai tahap ini<Icon name="arrow" size={16} /></button>
-              <p>Contoh rancangan.<br />Belum ditelaah secara klinis.</p>
             </div>
           </Reveal>
         </section>
@@ -137,7 +135,7 @@ export function Landing() {
           </Reveal>
           <Reveal className="premium-demo-area" kind="settle" ui>
             <div className="premium-demo-card">
-              <div className="premium-demo-bar"><span><Icon name="today" size={17} /> Hari ini</span><DemoTag /></div>
+              <div className="premium-demo-bar"><span><Icon name="today" size={17} /> Hari ini</span></div>
               <div className="premium-demo-title"><span>Rani & keluarga</span><h3>Rencana minggu ini.</h3><p>Alya, 9 bulan · Tahap MPASI</p></div>
               <div className="premium-demo-progress"><span aria-live="polite">{checked.length} dari 3 selesai</span><div aria-hidden="true"><span style={{ width: `${checked.length / 3 * 100}%` }} /></div></div>
               <ul className="premium-demo-tasks">
@@ -150,17 +148,15 @@ export function Landing() {
               </ul>
               <div className="premium-demo-footer"><Icon name="family" size={18} /><span>Peran kecil, dikerjakan bersama.</span></div>
             </div>
-            <p className="premium-demo-caption">Coba centang satu tugas. Ini hanya pratinjau.</p>
           </Reveal>
         </section>
 
         <section id="sumber" className="premium-trust" aria-labelledby="trust-title">
           <Reveal><h2 id="trust-title">Tahu batas.<br />Tetap membantu.</h2><p>Catatanmu membantu percakapan dengan tenaga kesehatan. Keputusan kesehatan tetap bersama ahlinya.</p></Reveal>
           <Reveal className="premium-trust-content" kind="side">
-            <p className="premium-demo-notice"><DemoTag />Purwarupa dengan keluarga fiktif. Materi contoh belum ditelaah secara klinis.</p>
             <details><summary>Apa yang bisa dan tidak bisa dilakukan?<Icon name="plus" size={16} /></summary><div><p>Susun prioritas, pilih menu, dan simpan pengukuran mentah. Tidak ada prediksi IQ, diagnosis dari foto, z-score, atau saran dosis.</p><a href="#/panduan" className="premium-text-action" onClick={(event) => { event.preventDefault(); if (!hasProfile) setState(() => buildDemoState()); navigate("panduan"); }}>Buka panduan demo<Icon name="arrow" size={16} /></a></div></details>
             <details><summary>Di mana catatan disimpan?<Icon name="plus" size={16} /></summary><div><p>Data demo tersimpan di peramban perangkat ini. Tidak ada akun atau sinkronisasi. Kamu bisa mengekspor atau menghapusnya lewat halaman Keluarga.</p></div></details>
-            <details><summary>Rujukan dalam rancangan<Icon name="plus" size={16} /></summary><ul className="premium-sources">{SOURCES.slice(0, 8).map((source) => <li key={source.id}><span>{source.id}</span><div><strong>{source.org}</strong><p>{source.title}</p><p>{source.note}</p></div></li>)}</ul><p className="premium-source-note">Daftar dari rancangan 1.0, 20 Oktober 2026. Relevansi klinis perlu ditelaah.</p></details>
+            <details><summary>Rujukan dalam rancangan<Icon name="plus" size={16} /></summary><ul className="premium-sources">{SOURCES.slice(0, 8).map((source) => <li key={source.id}><span>{source.id}</span><div><strong>{source.org}</strong><p>{source.title}</p><p>{source.note}</p></div></li>)}</ul></details>
           </Reveal>
         </section>
 
@@ -174,9 +170,9 @@ export function Landing() {
         <div className="family-footer-main">
           <div className="family-footer-brand"><Brand compact /><p>Rencana kecil untuk hari-hari bersama.<br />Dari persiapan kehamilan hingga balita.</p></div>
           <nav aria-label="Jelajahi Tumbuh Bersama"><h2>Jelajahi</h2><a href="#perjalanan">Tahap keluarga</a><a href="#beda">Cara kerjanya</a><a href="#sumber">Sumber & batas penggunaan</a></nav>
-          <nav aria-label="Mulai menggunakan"><h2>Ruang keluarga</h2><button type="button" onClick={() => hasProfile ? navigate("hari-ini") : navigate("mulai")}>{hasProfile ? "Lanjutkan rencanaku" : "Buat rencana keluarga"}</button><button type="button" onClick={openDemo}>{hasProfile ? "Buka ruang keluargaku" : "Jelajahi demo"}</button><p>Tanpa akun. Data tersimpan di peramban perangkat ini.</p></nav>
+          <nav aria-label="Mulai menggunakan"><h2>Ruang keluarga</h2><button type="button" onClick={() => hasProfile ? navigate("hari-ini") : navigate("mulai")}>{hasProfile ? "Lanjutkan rencanaku" : "Buat rencana keluarga"}</button><button type="button" onClick={openDemo}>{hasProfile ? "Buka ruang keluargaku" : "Jelajahi demo"}</button></nav>
         </div>
-        <div className="family-footer-bottom"><span>© {new Date().getFullYear()} Tumbuh Bersama</span><p>Purwarupa · Data contoh fiktif · Bukan layanan kesehatan.</p><a href="#konten-publik" onClick={(event) => { event.preventDefault(); const main = document.getElementById("konten-publik"); main?.focus({ preventScroll: true }); window.scrollTo({ top: 0, behavior: enabled ? "smooth" : "instant" }); }}>Kembali ke atas ↑</a></div>
+        <div className="family-footer-bottom"><span>© {new Date().getFullYear()} Tumbuh Bersama</span><a href="#konten-publik" onClick={(event) => { event.preventDefault(); const main = document.getElementById("konten-publik"); main?.focus({ preventScroll: true }); window.scrollTo({ top: 0, behavior: enabled ? "smooth" : "instant" }); }}>Kembali ke atas ↑</a></div>
       </footer>
     </div>
   );

@@ -62,7 +62,6 @@ export function AlbumPhoto() {
         width="1536" height="1024" fetchPriority="high"
         style={{ scale: enabled ? zoom : 1, y: enabled ? y : 0 }} />
     </div>
-    <figcaption><span>Setiap keluarga punya ritmenya.</span><span>Gambar ilustratif AI</span></figcaption>
   </figure>;
 }
 
@@ -89,7 +88,6 @@ function StoryContent({ item, onOpen, animated = false }: { item: typeof STORY[n
     <figure className="feature-walkthrough-image">
       <img src={`/images/product-${item.image}.png`}
         alt={`Tampilan demo TumbuhBersama: ${item.title}`} width="1440" height="900" loading="eager" />
-      <figcaption>Tampilan aplikasi · Data contoh</figcaption>
     </figure>
   </motion.article>;
 }

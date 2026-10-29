@@ -60,3 +60,7 @@ Hero diubah menjadi dua kolom pada desktop: penjelasan dan CTA berdampingan deng
 ## Animasi fitur sinkron — 29 Oktober 2026
 
 Sesuai permintaan lanjutan pengguna, bagian Satu ruang keluarga kembali memakai scroll storytelling pada desktop. Satu panel sticky berisi teks dan screenshot yang berganti sebagai satu unit, sehingga sinkron. Track 240svh dengan tiga tahap, screenshot maksimal 350px/43svh. Tombol Prioritas/Menu/Catatan dapat dipilih langsung dengan mouse atau keyboard dan mengatur posisi scroll. Seluruh aset screenshot dipramuat untuk transisi. Layar sempit, tinggi di bawah 650px, reduced motion, dan motion=off memakai tiga baris statis. Uji native scroll maju, pilihan keyboard, sinkronisasi teks-gambar, 900x650/1024x650, mobile390px, dan motion=off lulus.
+
+## Penyederhanaan keterangan landing — 29 Oktober 2026
+
+Atas permintaan pengguna, caption foto (termasuk label AI), caption screenshot, label penyimpanan di hero/footer, dan catatan prototipe berulang pada landing dihapus. Informasi penyimpanan dan batas penggunaan tetap dapat ditemukan di accordion Sumber & batas. Alt gambar tetap deskriptif. Build lulus; browser memastikan teks sasaran tidak tampil, tanpa overflow pada desktop.
