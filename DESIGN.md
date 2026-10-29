@@ -56,3 +56,7 @@ Build dan pemeriksaan browser dilakukan pada source final. Tujuh layar diperiksa
 ## Revisi feedback 29 Oktober 2026
 
 Hero diubah menjadi dua kolom pada desktop: penjelasan dan CTA berdampingan dengan foto yang dibatasi oleh kolom, rasio 1.5. Pada ponsel foto rasio 1.7 agar tidak menghabiskan layar. Konteks rencana/menu/catatan ditambahkan di dekat foto. Cerita sticky dan pergantian screenshot berdasarkan progres scroll dihapus; tiga baris fitur memasangkan teks, CTA, dan screenshot secara permanen. Ini menghilangkan ketergantungan timing scroll. Motion headline, reveal ringan, dan foto tetap menghormati reduced motion. Footer diperluas dengan navigasi, akses ruang keluarga/demo, batas penggunaan, penyimpanan data, dan kembali ke atas dengan fokus keyboard. Lebar konten utama 1200px.
+
+## Animasi fitur sinkron — 29 Oktober 2026
+
+Sesuai permintaan lanjutan pengguna, bagian Satu ruang keluarga kembali memakai scroll storytelling pada desktop. Satu panel sticky berisi teks dan screenshot yang berganti sebagai satu unit, sehingga sinkron. Track 240svh dengan tiga tahap, screenshot maksimal 350px/43svh. Tombol Prioritas/Menu/Catatan dapat dipilih langsung dengan mouse atau keyboard dan mengatur posisi scroll. Seluruh aset screenshot dipramuat untuk transisi. Layar sempit, tinggi di bawah 650px, reduced motion, dan motion=off memakai tiga baris statis. Uji native scroll maju, pilihan keyboard, sinkronisasi teks-gambar, 900x650/1024x650, mobile390px, dan motion=off lulus.

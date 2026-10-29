@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
+import { motion, useMotionValueEvent, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import { motionTokens, springs } from "../lib/motion-tokens";
 import type { Screen } from "../types";
 
@@ -79,20 +79,55 @@ const STORY = [
   { title: "Bawa catatanmu.", text: "Pengukuran mentah dan pertanyaan terkumpul dalam ringkasan yang bisa dicetak. Bekal untuk berdiskusi dengan tenaga kesehatan.", image: "catatan", action: "Lihat catatan", route: "catatan" },
 ] as const;
 
+function StoryContent({ item, onOpen, animated = false }: { item: typeof STORY[number]; onOpen: (screen: Screen) => void; animated?: boolean }) {
+  return <motion.article className="feature-walkthrough-row" initial={animated ? { opacity: 0.4, y: 12 } : false}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: animated ? motionTokens.duration.normal : 0, ease: motionTokens.easing.smooth }}>
+    <div className="feature-walkthrough-copy"><h3>{item.title}</h3><p>{item.text}</p>
+      <button type="button" className="album-story-action" onClick={() => onOpen(item.route)}>{item.action}<span aria-hidden="true">↗</span></button>
+    </div>
+    <figure className="feature-walkthrough-image">
+      <img src={`/images/product-${item.image}.png`}
+        alt={`Tampilan demo TumbuhBersama: ${item.title}`} width="1440" height="900" loading="eager" />
+      <figcaption>Tampilan aplikasi · Data contoh</figcaption>
+    </figure>
+  </motion.article>;
+}
+
 export function ScrollStory({ onOpen }: { onOpen: (screen: Screen) => void }) {
-  return <section id="beda" className="album-story feature-walkthrough" aria-labelledby="story-title">
-    <Reveal className="album-story-heading"><h2 id="story-title">Satu ruang keluarga.</h2><p>Susun prioritas, pilih menu, dan siapkan catatan. Lihat bagaimana semuanya dipakai sehari-hari.</p></Reveal>
-    <div className="feature-walkthrough-list">
-      {STORY.map((item) => <article className="feature-walkthrough-row" key={item.image}>
-        <Reveal className="feature-walkthrough-copy"><h3>{item.title}</h3><p>{item.text}</p>
-          <button type="button" className="album-story-action" onClick={() => onOpen(item.route)}>{item.action}<span aria-hidden="true">↗</span></button>
-        </Reveal>
-        <figure className="feature-walkthrough-image">
-          <img src={`/images/product-${item.image}.png`}
-            alt={`Tampilan demo TumbuhBersama: ${item.title}`} width="1440" height="900" loading="lazy" />
-          <figcaption>Tampilan aplikasi · Data contoh</figcaption>
-        </figure>
-      </article>)}
+  const ref = useRef<HTMLElement>(null);
+  const { enabled, wide } = useMotionSettings();
+  const cinematic = enabled && wide;
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    if (!cinematic) return;
+    STORY.forEach((item) => {
+      const image = new Image();
+      image.src = `/images/product-${item.image}.png`;
+    });
+  }, [cinematic]);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 76px", "end end"] });
+  useMotionValueEvent(scrollYProgress, "change", (value) => {
+    setActive(Math.min(STORY.length - 1, Math.max(0, Math.floor(value * STORY.length))));
+  });
+  return <section ref={ref} id="beda" className={`album-story feature-walkthrough ${cinematic ? "feature-scroll" : ""}`} aria-labelledby="story-title">
+    <div className="feature-scroll-stage">
+      <div className="album-story-heading"><h2 id="story-title">Satu ruang keluarga.</h2><p>Susun prioritas, pilih menu, dan siapkan catatan. Lihat bagaimana semuanya dipakai sehari-hari.</p></div>
+      {cinematic ? <>
+        <nav className="feature-scroll-nav" aria-label="Pilih fitur untuk dilihat">
+          {STORY.map((item, index) => <button type="button" key={item.image} aria-pressed={active === index}
+            onClick={() => {
+              const section = ref.current;
+              if (!section) return;
+              const start = section.getBoundingClientRect().top + window.scrollY - 76;
+              const travel = section.offsetHeight - window.innerHeight + 76;
+              window.scrollTo({ top: start + travel * ((index + 0.5) / STORY.length), behavior: "instant" });
+              setActive(index);
+            }}>{["Prioritas", "Menu", "Catatan"][index]}</button>)}
+        </nav>
+        <StoryContent key={STORY[active].image} item={STORY[active]} onOpen={onOpen} animated />
+        <p className="feature-scroll-hint">Gulir untuk menjelajahi fitur <span aria-hidden="true">↓</span></p>
+      </> : <div className="feature-walkthrough-list">{STORY.map((item) => <StoryContent key={item.image} item={item} onOpen={onOpen} />)}</div>}
     </div>
   </section>;
 }

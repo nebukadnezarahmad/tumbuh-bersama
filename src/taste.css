@@ -69,6 +69,22 @@
 .album-story-action:hover { text-decoration: underline; text-underline-offset: 6px; }
 .album-story-action:focus-visible { outline-color: #fffaf6; }
 
+.feature-scroll { position: relative; height: 240svh; padding-block: 0; }
+.feature-scroll-stage { min-width: 0; }
+.feature-scroll .feature-scroll-stage { position: sticky; top: 76px; height: calc(100svh - 76px); display: flex; flex-direction: column; justify-content: center; padding-block: 28px; }
+.feature-scroll .album-story-heading { margin-bottom: 18px; }
+.feature-scroll .album-story-heading h2 { font-size: clamp(32px, 3.2vw, 44px); }
+.feature-scroll .album-story-heading > p { font-size: 15px; }
+.feature-scroll-nav { display: flex; gap: 8px; margin-bottom: 20px; }
+.feature-scroll-nav button { min-height: 44px; padding: 8px 18px; border: 0; background: #64364c; color: #fffaf6; font-size: 14px; border-radius: 999px; }
+.feature-scroll-nav button[aria-pressed="true"] { background: #fffaf6; color: var(--album-dark); }
+.feature-scroll-nav button:hover { background: #815368; color: #fff; }
+.feature-scroll-nav button:focus-visible { outline-color: #fffaf6; }
+.feature-scroll .feature-walkthrough-row { min-height: 0; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 48px; }
+.feature-scroll .feature-walkthrough-image img { max-height: min(43svh, 350px); object-fit: contain; object-position: left center; }
+.feature-scroll-hint { margin-top: 18px; color: #e8d8df; font-size: 13px; }
+.feature-scroll-hint span { margin-left: 8px; }
+
 .taste-page .premium-product { padding: var(--album-space) max(32px, calc((100vw - 1136px) / 2)); gap: 70px; background: #f0ecec; }
 .taste-page .premium-product-copy h2 { font-size: clamp(32px, 4.5vw, 62px); margin-top: 0; }
 .taste-page .premium-product-copy > p:not(.premium-eyebrow) { color: var(--album-ink); font-size: 17px; line-height: 1.6; }
