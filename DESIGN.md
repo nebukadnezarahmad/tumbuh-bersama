@@ -52,3 +52,7 @@ Tetap purwarupa lokal. Tidak ada diagnosis, z-score, prediksi IQ, atau saran dos
 `src/premium.css` menetapkan sistem burgundy; `src/taste.css` memoles landing dan komposisi scroll. Alias token teal lama menunjuk warna aksi burgundy agar komponen lama tetap konsisten. Detail aset dan prompt ada di `public/images/README.md`.
 
 Build dan pemeriksaan browser dilakukan pada source final. Tujuh layar diperiksa pada 320, 360, 390, 768, 1024, dan 1440px; alur baru serta regresi utama diuji. Ini bukan audit klinis atau sertifikasi WCAG.
+
+## Revisi feedback 29 Oktober 2026
+
+Hero diubah menjadi dua kolom pada desktop: penjelasan dan CTA berdampingan dengan foto yang dibatasi oleh kolom, rasio 1.5. Pada ponsel foto rasio 1.7 agar tidak menghabiskan layar. Konteks rencana/menu/catatan ditambahkan di dekat foto. Cerita sticky dan pergantian screenshot berdasarkan progres scroll dihapus; tiga baris fitur memasangkan teks, CTA, dan screenshot secara permanen. Ini menghilangkan ketergantungan timing scroll. Motion headline, reveal ringan, dan foto tetap menghormati reduced motion. Footer diperluas dengan navigasi, akses ruang keluarga/demo, batas penggunaan, penyimpanan data, dan kembali ke atas dengan fokus keyboard. Lebar konten utama 1200px.

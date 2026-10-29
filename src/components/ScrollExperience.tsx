@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { motion, useMotionValueEvent, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import { motionTokens, springs } from "../lib/motion-tokens";
 import type { Screen } from "../types";
 
@@ -80,37 +80,19 @@ const STORY = [
 ] as const;
 
 export function ScrollStory({ onOpen }: { onOpen: (screen: Screen) => void }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { enabled, wide } = useMotionSettings();
-  const [active, setActive] = useState(0);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start center", "end center"] });
-  useMotionValueEvent(scrollYProgress, "change", (value) => {
-    const next = Math.min(STORY.length - 1, Math.max(0, Math.floor(value * STORY.length)));
-    setActive((current) => current === next ? current : next);
-  });
-  const cinematic = enabled && wide;
-  return <section id="beda" className={`album-story ${cinematic ? "is-cinematic" : "is-static"}`} aria-labelledby="story-title">
-    <Reveal className="album-story-heading"><h2 id="story-title">Satu ruang keluarga.</h2><p>Dari rencana kecil sampai catatan yang ingin dibawa bercerita.</p></Reveal>
-    <div className="album-story-grid" ref={ref}>
-      <div className="album-story-media" aria-hidden="true">
-        <div className="album-story-screen">
-          {STORY.map((item, index) => <motion.img key={item.image}
-            src={`/images/product-${item.image}.png`} alt="" width="1440" height="900" loading="lazy"
-            initial={false} animate={{ opacity: active === index ? 1 : 0, y: active === index ? 0 : motionTokens.distance.small }}
-            transition={{ duration: motionTokens.duration.normal, ease: motionTokens.easing.smooth }} />)}
-        </div>
-        <p>Tampilan aplikasi · Data contoh</p>
-        <div className="album-story-dots">{STORY.map((item, index) => <span key={item.image} className={active === index ? "is-active" : ""} />)}</div>
-      </div>
-      <div className="album-story-steps">
-        {STORY.map((item, index) => <article className={`album-story-step ${active === index ? "is-current" : ""}`} key={item.image}>
-          <Reveal kind={index === 1 ? "side" : "rise"}><h3>{item.title}</h3><p>{item.text}</p>
-            <button type="button" className="album-story-action" onClick={() => onOpen(item.route)}>{item.action}<span aria-hidden="true">↗</span></button>
-          </Reveal>
-          <img className="album-story-mobile-image" src={`/images/product-${item.image}.png`}
+  return <section id="beda" className="album-story feature-walkthrough" aria-labelledby="story-title">
+    <Reveal className="album-story-heading"><h2 id="story-title">Satu ruang keluarga.</h2><p>Susun prioritas, pilih menu, dan siapkan catatan. Lihat bagaimana semuanya dipakai sehari-hari.</p></Reveal>
+    <div className="feature-walkthrough-list">
+      {STORY.map((item) => <article className="feature-walkthrough-row" key={item.image}>
+        <Reveal className="feature-walkthrough-copy"><h3>{item.title}</h3><p>{item.text}</p>
+          <button type="button" className="album-story-action" onClick={() => onOpen(item.route)}>{item.action}<span aria-hidden="true">↗</span></button>
+        </Reveal>
+        <figure className="feature-walkthrough-image">
+          <img src={`/images/product-${item.image}.png`}
             alt={`Tampilan demo TumbuhBersama: ${item.title}`} width="1440" height="900" loading="lazy" />
-        </article>)}
-      </div>
+          <figcaption>Tampilan aplikasi · Data contoh</figcaption>
+        </figure>
+      </article>)}
     </div>
   </section>;
 }

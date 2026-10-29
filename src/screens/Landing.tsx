@@ -77,6 +77,7 @@ export function Landing() {
       <main id="konten-publik" tabIndex={-1}>
         <section className="premium-hero" aria-labelledby="hero-title">
           <div className="premium-hero-copy">
+            <p className="hero-context">Pendamping rencana keluarga</p>
             <AlbumHeadline />
             <p>Rencana sederhana, menu sehari-hari, dan catatan tumbuh. Lebih terarah menjalani hari, dari rencana kehamilan sampai balita.</p>
             <div className="premium-hero-actions">
@@ -87,7 +88,7 @@ export function Landing() {
             </div>
             <p className="premium-private"><Icon name="shield" size={14} />Tanpa akun. Tersimpan di perambanmu.</p>
           </div>
-          <AlbumPhoto />
+          <div className="hero-visual"><AlbumPhoto /><div className="hero-visual-note"><strong>Rencana. Menu. Catatan.</strong><p>Satu tempat untuk membagi peran dan menyiapkan hari bersama.</p></div></div>
         </section>
 
         <Reveal className="premium-promise-strip" kind="side">
@@ -169,7 +170,14 @@ export function Landing() {
           <p>Mulai dari tahapmu. Lengkapi catatan saat kamu siap.</p>
         </section>
       </main>
-      <footer className="premium-footer"><div><Brand compact /><p>Untuk tumbuh. Untuk bersama.</p></div><div><span>Purwarupa lokal · Rancangan 1.0</span><p>Bukan layanan kesehatan. Data demo fiktif.</p><a href="#sumber">Sumber & batas penggunaan</a></div></footer>
+      <footer className="premium-footer family-footer">
+        <div className="family-footer-main">
+          <div className="family-footer-brand"><Brand compact /><p>Rencana kecil untuk hari-hari bersama.<br />Dari persiapan kehamilan hingga balita.</p></div>
+          <nav aria-label="Jelajahi Tumbuh Bersama"><h2>Jelajahi</h2><a href="#perjalanan">Tahap keluarga</a><a href="#beda">Cara kerjanya</a><a href="#sumber">Sumber & batas penggunaan</a></nav>
+          <nav aria-label="Mulai menggunakan"><h2>Ruang keluarga</h2><button type="button" onClick={() => hasProfile ? navigate("hari-ini") : navigate("mulai")}>{hasProfile ? "Lanjutkan rencanaku" : "Buat rencana keluarga"}</button><button type="button" onClick={openDemo}>{hasProfile ? "Buka ruang keluargaku" : "Jelajahi demo"}</button><p>Tanpa akun. Data tersimpan di peramban perangkat ini.</p></nav>
+        </div>
+        <div className="family-footer-bottom"><span>© {new Date().getFullYear()} Tumbuh Bersama</span><p>Purwarupa · Data contoh fiktif · Bukan layanan kesehatan.</p><a href="#konten-publik" onClick={(event) => { event.preventDefault(); const main = document.getElementById("konten-publik"); main?.focus({ preventScroll: true }); window.scrollTo({ top: 0, behavior: enabled ? "smooth" : "instant" }); }}>Kembali ke atas ↑</a></div>
+      </footer>
     </div>
   );
 }
