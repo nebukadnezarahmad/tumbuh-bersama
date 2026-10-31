@@ -13,7 +13,7 @@ import { Family } from "./screens/Family";
 import type { Screen } from "./types";
 
 const TITLES: Record<string, string> = {
-  landing: "TumbuhBersama — purwarupa pendamping keluarga",
+  landing: "TumbuhBersama — Langkah kecil, tumbuh bersama",
   mulai: "Mulai — TumbuhBersama",
   "hari-ini": "Hari Ini — TumbuhBersama",
   rencana: "Rencana — TumbuhBersama",
@@ -53,9 +53,7 @@ export default function App() {
 
   return (
     <>
-      <SkipLink target="konten">
-        Lewati ke konten utama
-      </SkipLink>
+      <SkipLink target="konten">Lewati ke konten utama</SkipLink>
       <AppShell screen={screen}>
         {screen === "hari-ini" ? <Today /> : null}
         {screen === "rencana" ? <Plan /> : null}

@@ -1,66 +1,33 @@
-# TumbuhBersama: premium yang tetap dekat
+# TumbuhBersama — langkah kecil, tumbuh bersama
 
-Penyempurnaan 25 Oktober 2026 berdasarkan permintaan pengguna: UI sederhana dengan ketenangan Apple, warna dan sentuhan editorial Pryvo, foto yang relevan, serta alur yang lebih mudah dipakai. Arah sebelumnya berupa jurnal hijau digantikan oleh burgundy, gading, dan charcoal.
+Penyempurnaan 31 Oktober 2026 untuk repo dan deployment Vercel yang sama. Fokus: UI keluarga yang hangat dan jelas, background dari referensi SIGAP, teks yang lebih dekat dengan keseharian, serta alur berdasarkan Rancangan Website TumbuhBersama.
 
-Antislop during. ENERGY 2 / RHYTHM 3 / MOTION 3 pada landing setelah permintaan pemolesan scroll; layar kerja tetap tenang. Fokus jelas, komposisi mengikuti isi, tanpa loop.
+## Arah visual dan hirarki
 
-## Pemolesan taste-skill dan scroll
+- Teal gelap #174e43 untuk aksi; ivory #f8f7f2 untuk halaman publik; sage untuk konteks; amber untuk pembagian peran.
+- Manrope untuk navigasi dan aplikasi. Fraunces untuk judul editorial terbatas di halaman publik.
+- Hero menampilkan contoh tiga prioritas yang bisa dicentang, pemilik tugas, tenggat, dan progres. Konten contoh diberi label.
+- Kisi piksel diadaptasi dari `nebukadnezarahmad/sigap/src/components/pixel-grid.tsx`; 42px sel, celah 3px, gelombang opacity lambat, warna disesuaikan. Canvas dekoratif disembunyikan dari pembaca layar, berhenti di luar viewport/ketika tab tidak aktif, dan statis saat reduced motion.
+- Pilihan tahap meliputi sebelum hamil hingga balita. Pilihan diteruskan ke formulir awal.
+- Penjelasan produk memakai tiga pilihan interaktif: prioritas, menu, catatan. Setiap pilihan membuka contoh yang sesuai dan akses ke aplikasi.
+- Foto keluarga lama dipertahankan sebagai ilustrasi pendukung, dengan label AI; tidak digunakan sebagai testimoni.
+- Formulir awal menampilkan pilihan tahap, nama/tanggal opsional, dan contoh fokus yang sesuai. Dashboard memakai sistem warna dan ukuran teks yang sama.
 
-Pengguna meminta `npx skills add Leonxlnx/taste-skill`. Skill `design-taste-frontend` dipasang global untuk Codex pada 25 Oktober 2026 dan panduannya dipakai pada iterasi ini. Direction sheet tersimpan di `.taste-skill/direction.json`, dengan arah borrowed-category: perencana keluarga diperlakukan sebagai album keluarga pribadi. Palet dan keluarga font dipertahankan.
+## Kontrak produk
 
-Headline menjadi dua baris besar dalam satu wajah dan warna. Foto keluarga memenuhi lebar konten di bawahnya. Label uppercase kecil, indeks dekoratif, garis pembatas, dan bayangan di permukaan diam dikurangi pada landing. Bagian produk menampilkan tiga cuplikan aplikasi nyata; bersama foto utama tersedia empat gambar berbeda.
+Pekerjaan utama pengguna: menyiapkan paling banyak tiga prioritas mingguan, memilih menu lokal, membagi peran, dan mencatat pengukuran untuk konsultasi. Aksi pertama: pilih tahap atau jelajahi demo. Target utama: 390×844 dan 1440×1000; pemeriksaan sempit tambahan 320px.
 
-Motion menggunakan `motion/react`: pembukaan headline bermasker, foto terkait posisi scroll, progres baca, entrance dengan arah sesuai isi, serta tiga langkah cerita dengan media sticky di desktop. Scroll tetap native. Pada layar sempit, tinggi layar pendek, preferensi reduced motion, perangkat dengan paling banyak empat logical cores, atau URL `?motion=off`, cerita tampil statis dengan seluruh gambar dan teks.
+Alur yang dipertahankan: tahap → profil minimum → Hari Ini → Rencana / Catatan / Panduan / Keluarga. Navigasi bawah tetap tersedia di ponsel. Profil yang ada tidak ditimpa oleh tombol demo. Penggantian profil memerlukan dialog konfirmasi. Data tetap lokal di peramban, dapat diekspor dan dihapus lewat Keluarga. Tidak ada akun, sinkronisasi, diagnosis, atau skor kesehatan baru.
 
-Token di `src/lib/motion-tokens.ts`. Gerak mikro 180ms, entrance 420ms, signature headline 640ms; pengecualian headline lebih lambat dipakai sekali. Tidak ada loop, wheel interception, animasi properti layout, atau konten yang menunggu scroll untuk menjadi dapat dibaca. Reset reduced motion langsung tanpa durasi transisi.
+## Keadaan antarmuka
 
-Pada pengujian produksi ditemukan overflow sesaat dari entrance horizontal. Gerak itu diganti dengan scaleX 0.985 ke 1; ukuran halaman tetap sama dengan viewport selama entrance pada 320, 390, 768, 1024, dan 1440px.
+- Loading: aplikasi dan font dibundel lokal; canvas memiliki fallback tanpa menghalangi konten.
+- Empty: keadaan kosong yang sudah ada pada menu dan catatan tetap menawarkan tindakan berikutnya.
+- Error: validasi formulir dan pengukuran tetap memakai pesan spesifik; tidak menambahkan layanan jaringan baru.
+- Partial: profil boleh hanya berisi tahap; nama/tanggal dapat diisi kemudian. Pengukuran atau menu yang belum dipilih tetap diberi penjelasan.
+- Success: centang contoh mengubah progres; pembuatan profil membuka prioritas; tindakan aplikasi mempertahankan umpan balik yang sudah tersedia.
+- Permission: tidak ada izin perangkat/akun baru atau perubahan akses.
 
-Aturan baru di `src/taste.css` berlaku pada landing. Layar kerja dan data tetap mengikuti sistem aplikasi sebelumnya. Cuplikan live diberi `data-ui` agar aturan panel aplikasi tidak tercampur dengan aturan halaman publik.
+## Berkas
 
-## Keputusan visual
-
-- Gading `#faf9f6` untuk baca yang tenang; putih untuk formulir dan catatan yang dapat dikelola.
-- Burgundy `#691c39` membawa aksi dan navigasi aktif; `#4d1228` untuk hover. Ini aksen utama, bukan hijau.
-- Charcoal `#252126` untuk teks dan `#68616a` untuk teks sekunder. Rose `#f1e9ed` mengelompokkan informasi pendukung.
-- Champagne hanya pada judul besar di penutup gelap, tidak untuk teks kecil di gading.
-- Manrope menjadi basis judul dan isi; landing terbaru tidak memakai kata aksen berwarna atau italic. Fraunces dipertahankan pada wordmark dan detail aplikasi yang sudah ada.
-- Foto keluarga memberi konteks personal. Dibuat memakai imagegen bawaan, berlabel ilustratif AI, bukan foto pelanggan atau testimoni.
-- Hero terbaru memakai judul dua baris, satu aksi utama dan tautan penjelasan, lalu foto lebar. Pratinjau interaktif ditempatkan setelah cerita aplikasi.
-- Tahap disusun sebagai pilihan bernomor, dengan fokus dan CTA kontekstual di bawahnya.
-- Panel konten dan foto bersudut lembut; pil terbatas pada kontrol. Navigasi tidak memakai dekorasi berulang.
-- Gerak hanya untuk respons keadaan dan kedatangan konteks; reduced motion mematikannya.
-- Dasar terang dipilih untuk membaca, mencatat, dan mencetak; tidak ada sakelar tema yang menjanjikan mode gelap.
-
-## Perbaikan UX
-
-- Pilihan tahap diteruskan lewat `#/mulai?tahap=...` dan divalidasi sebelum dipakai.
-- Pengguna bisa mulai hanya dengan memilih tahap; nama dan tanggal diungkap melalui detail opsional.
-- Profil yang sudah ada tidak dihapus oleh tombol demo. Formulir baru memberi tautan edit profil lama dan meminta konfirmasi sebelum mengganti data.
-- Navigasi mobile memiliki menu berlabel, dapat ditutup dengan Escape, dan fokus kembali ke pemicu.
-- Tugas menampilkan aksi utama Selesai. Tunda, bantuan, alasan, pemilik, dan tenggat berada dalam Detail & pilihan.
-- Shortcut dashboard mengikuti tahap: pengukuran untuk tahap anak, panduan untuk persiapan/kehamilan.
-- Skip link memindahkan fokus tanpa mengganti hash router, agar pilihan tahap dan tombol Back tetap benar.
-- Default Rencana tidak diulang sebagai badge pada setiap tugas; badge hanya menandai keadaan khusus.
-
-## Batas produk
-
-Tetap purwarupa lokal. Tidak ada diagnosis, z-score, prediksi IQ, atau saran dosis. Data demo, estimasi biaya, dan materi belum ditelaah tetap diberi label. Ekspor dan hapus data tetap tersedia.
-
-## Implementasi
-
-`src/premium.css` menetapkan sistem burgundy; `src/taste.css` memoles landing dan komposisi scroll. Alias token teal lama menunjuk warna aksi burgundy agar komponen lama tetap konsisten. Detail aset dan prompt ada di `public/images/README.md`.
-
-Build dan pemeriksaan browser dilakukan pada source final. Tujuh layar diperiksa pada 320, 360, 390, 768, 1024, dan 1440px; alur baru serta regresi utama diuji. Ini bukan audit klinis atau sertifikasi WCAG.
-
-## Revisi feedback 29 Oktober 2026
-
-Hero diubah menjadi dua kolom pada desktop: penjelasan dan CTA berdampingan dengan foto yang dibatasi oleh kolom, rasio 1.5. Pada ponsel foto rasio 1.7 agar tidak menghabiskan layar. Konteks rencana/menu/catatan ditambahkan di dekat foto. Cerita sticky dan pergantian screenshot berdasarkan progres scroll dihapus; tiga baris fitur memasangkan teks, CTA, dan screenshot secara permanen. Ini menghilangkan ketergantungan timing scroll. Motion headline, reveal ringan, dan foto tetap menghormati reduced motion. Footer diperluas dengan navigasi, akses ruang keluarga/demo, batas penggunaan, penyimpanan data, dan kembali ke atas dengan fokus keyboard. Lebar konten utama 1200px.
-
-## Animasi fitur sinkron — 29 Oktober 2026
-
-Sesuai permintaan lanjutan pengguna, bagian Satu ruang keluarga kembali memakai scroll storytelling pada desktop. Satu panel sticky berisi teks dan screenshot yang berganti sebagai satu unit, sehingga sinkron. Track 240svh dengan tiga tahap, screenshot maksimal 350px/43svh. Tombol Prioritas/Menu/Catatan dapat dipilih langsung dengan mouse atau keyboard dan mengatur posisi scroll. Seluruh aset screenshot dipramuat untuk transisi. Layar sempit, tinggi di bawah 650px, reduced motion, dan motion=off memakai tiga baris statis. Uji native scroll maju, pilihan keyboard, sinkronisasi teks-gambar, 900x650/1024x650, mobile390px, dan motion=off lulus.
-
-## Penyederhanaan keterangan landing — 29 Oktober 2026
-
-Atas permintaan pengguna, caption foto (termasuk label AI), caption screenshot, label penyimpanan di hero/footer, dan catatan prototipe berulang pada landing dihapus. Informasi penyimpanan dan batas penggunaan tetap dapat ditemukan di accordion Sumber & batas. Alt gambar tetap deskriptif. Build lulus; browser memastikan teks sasaran tidak tampil, tanpa overflow pada desktop.
+`landing.css` memuat sistem halaman publik dan token palet. `app-polish.css` memuat penyesuaian layar kerja. Struktur layar, penyimpanan, data contoh, perhitungan menu, dan pengukuran tetap memakai kode proyek.

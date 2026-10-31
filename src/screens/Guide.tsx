@@ -29,10 +29,11 @@ export function Guide() {
       <header className="screen-head">
         <div>
           <p className="kicker">Panduan</p>
-          <h1>Materi sesuai tahap.</h1>
+          <h1>Bacaan untuk tahap keluargamu.</h1>
           <p className="lede screen-lede">
-            Ringkasan dari sumber resmi. Setiap materi menyebut sumbernya.
-            Materi demo belum ditelaah tenaga kesehatan.
+            Temukan bacaan untuk pertanyaan sehari-hari keluarga. Setiap
+            ringkasan mencantumkan sumber; materi ini belum ditelaah tenaga
+            kesehatan.
           </p>
         </div>
         <div className="head-meta">
@@ -122,9 +123,9 @@ export function Guide() {
                       <p>{item.takeaway}</p>
                     </div>
                     <p className="material-meta">
-                      <Badge tone="neutral">Contoh demo</Badge>
+                      <Badge tone="neutral">Bacaan ringkas</Badge>
                       <span>
-                        Sumber: {item.source}. Status telaah: belum ditetapkan.
+                        Sumber: {item.source}. Belum ditelaah tenaga kesehatan.
                       </span>
                     </p>
                   </div>
@@ -136,8 +137,8 @@ export function Guide() {
           <section aria-labelledby="myth-title" className="myths">
             <SectionHead
               kicker="Mitos dan fakta"
-              title="Klaim yang tidak dipakai produk"
-              lede="Beberapa kalimat populer justru menyesatkan. Ini koreksinya menurut sumber."
+              title="Periksa lagi yang sering terdengar"
+              lede="Baca penjelasan dan rujukannya sebelum mengikuti sebuah anjuran."
             />
             <div className="myth-list">
               {MYTHS.map((item) => (
@@ -159,8 +160,8 @@ export function Guide() {
           <section aria-labelledby="ref-title" className="references">
             <SectionHead
               kicker="Referensi"
-              title="Sumber yang dipakai rancangan"
-              lede="Nomor mengikuti dokumen rancangan halaman 33 dan 34. Periksa ulang versi pedoman sebelum rilis."
+              title="Rujukan bacaan"
+              lede="Daftar sumber di balik ringkasan. Nomornya sesuai dengan rujukan pada setiap materi."
             />
             <ol className="reference-list">
               {SOURCES.map((source) => (
@@ -178,9 +179,12 @@ export function Guide() {
         </div>
 
         <aside className="guide-aside" aria-label="Panduan cepat">
-          <section className="aside-card help-card" aria-labelledby="help-title">
+          <section
+            className="aside-card help-card"
+            aria-labelledby="help-title"
+          >
             <span className="kicker">Bantuan</span>
-            <h2 id="help-title">Tanda bahaya tidak menunggu formulir.</h2>
+            <h2 id="help-title">Kapan perlu bantuan segera?</h2>
             <p>
               Contoh yang perlu bantuan segera: perdarahan banyak atau sulit
               bernapas setelah melahirkan; bayi tidak mau menyusu, kejang, atau
@@ -196,16 +200,15 @@ export function Guide() {
             <h2 id="mental-title">Dukungan emosional</h2>
             <p className="muted">
               Bila ada pikiran melukai diri, cari bantuan segera dan hubungi
-              orang tepercaya atau layanan darurat. Ini bukan tips nutrisi
-              biasa.
+              orang tepercaya atau layanan darurat.
             </p>
           </section>
 
           <section className="aside-card" aria-labelledby="ai-title">
-            <h2 id="ai-title">Posisi AI</h2>
+            <h2 id="ai-title">Bekal untuk berdiskusi</h2>
             <p className="muted">
-              AI tidak dipakai untuk diagnosis, dosis, kategori antropometri,
-              atau menyatakan aman dari gejala. Purwarupa ini tidak memakai AI.
+              Panduan membantu menyiapkan pertanyaan. Diagnosis, dosis, dan
+              penilaian gejala tetap perlu dibicarakan dengan tenaga kesehatan.
             </p>
           </section>
         </aside>

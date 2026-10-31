@@ -1,9 +1,5 @@
 import { useMemo, useState } from "react";
-import {
-  PRIORITY_TEMPLATES,
-  RECIPES,
-  STAGES,
-} from "../data";
+import { PRIORITY_TEMPLATES, RECIPES, STAGES } from "../data";
 import { taskFromTemplate, useStore } from "../store";
 import type { Task, TaskStatus } from "../types";
 import {
@@ -15,13 +11,7 @@ import {
   todayISO,
 } from "../lib/date";
 import { recipeCost } from "../lib/menu";
-import {
-  Badge,
-  DemoTag,
-  EmptyState,
-  Icon,
-  Modal,
-} from "../components/ui";
+import { Badge, DemoTag, EmptyState, Icon, Modal } from "../components/ui";
 
 const STATUS_LABEL: Record<TaskStatus, string> = {
   rencana: "Rencana",
@@ -30,22 +20,22 @@ const STATUS_LABEL: Record<TaskStatus, string> = {
   bantuan: "Perlu bantuan",
 };
 
-const STATUS_TONE: Record<
-  TaskStatus,
-  "neutral" | "success" | "warn" | "clay"
-> = {
-  rencana: "neutral",
-  selesai: "success",
-  tertunda: "warn",
-  bantuan: "clay",
-};
+const STATUS_TONE: Record<TaskStatus, "neutral" | "success" | "warn" | "clay"> =
+  {
+    rencana: "neutral",
+    selesai: "success",
+    tertunda: "warn",
+    bantuan: "clay",
+  };
 
 export function Today() {
   const { state, updateTask, removeTask, addTask } = useStore();
   const [pickerOpen, setPickerOpen] = useState(false);
   const today = todayISO();
   const profile = state.profile;
-  const hasChildStage = ["nifas", "bayi", "mpasi", "balita"].includes(profile?.stage ?? "");
+  const hasChildStage = ["nifas", "bayi", "mpasi", "balita"].includes(
+    profile?.stage ?? "",
+  );
   const stage = STAGES.find((item) => item.id === profile?.stage);
   const active = useMemo(
     () =>
@@ -96,8 +86,8 @@ export function Today() {
           </p>
           <h1>Halo, {profile?.motherName || "Ibu"}.</h1>
           <p className="lede screen-lede">
-            Ada ruang untuk satu langkah kecil hari ini.
-            {childAge ? ` Bersama ${childAge}.` : " Kita jalani sesuai kemampuan."}
+            Ini rencana yang bisa kamu lanjutkan hari ini.
+            {childAge ? ` Bersama ${childAge}.` : " Sesuaikan dengan waktumu."}
           </p>
         </div>
         <div className="head-meta">
@@ -107,8 +97,32 @@ export function Today() {
       </header>
 
       <div className="today-overview">
-        <div><p className="eyebrow">Rencana keluarga</p><h2>Satu per satu, <em>bersama.</em></h2><p>{stage?.summary || "Susun rencana yang sesuai dengan keluargamu."}</p><div className="overview-shortcuts"><a href="#/rencana"><Icon name="utensils" size={15} />Pilih menu</a><a href={hasChildStage ? "#/catatan" : "#/panduan"}><Icon name={hasChildStage ? "plus" : "guide"} size={15} />{hasChildStage ? "Catat pengukuran" : "Baca panduan"}</a></div></div>
-        <div className="overview-progress"><strong>{done.length}<span>/{state.tasks.length}</span></strong><span>prioritas selesai</span></div>
+        <div>
+          <p className="eyebrow">Rencana keluarga</p>
+          <h2>
+            Satu per satu, <em>bersama.</em>
+          </h2>
+          <p>
+            {stage?.summary || "Susun rencana yang sesuai dengan keluargamu."}
+          </p>
+          <div className="overview-shortcuts">
+            <a href="#/rencana">
+              <Icon name="utensils" size={15} />
+              Pilih menu
+            </a>
+            <a href={hasChildStage ? "#/catatan" : "#/panduan"}>
+              <Icon name={hasChildStage ? "plus" : "guide"} size={15} />
+              {hasChildStage ? "Catat pengukuran" : "Baca panduan"}
+            </a>
+          </div>
+        </div>
+        <div className="overview-progress">
+          <strong>
+            {done.length}
+            <span>/{state.tasks.length}</span>
+          </strong>
+          <span>prioritas selesai</span>
+        </div>
       </div>
 
       <div className="screen-grid">
@@ -162,8 +176,8 @@ export function Today() {
                   </button>
                 }
               >
-                Tugas yang selesai tetap tersimpan di bawah. Tambah satu
-                prioritas bila minggu ini mulai longgar.
+                Pilih satu prioritas saat kamu siap. Tugas yang sudah selesai
+                tetap tersimpan di bawah.
               </EmptyState>
             ) : (
               <ol className="task-list">
@@ -206,10 +220,10 @@ export function Today() {
           <section className="week-note" aria-labelledby="week-note-title">
             <Icon name="info" size={18} />
             <div>
-              <h2 id="week-note-title">Tugas lewat tenggat bukan kegagalan.</h2>
+              <h2 id="week-note-title">Rencana boleh berubah.</h2>
               <p>
-                Tandai “Ditunda” atau “Perlu bantuan”. Status tidak mengubah
-                penilaian kesehatan dan bisa diubah kapan saja.
+                Ada yang belum sempat dikerjakan? Tunda tugas atau tandai “Perlu
+                bantuan” lewat Detail & pilihan.
               </p>
             </div>
           </section>
@@ -234,7 +248,8 @@ export function Today() {
                   {formatDate(latestMeasurement.date, false)}
                 </p>
                 <p className="fine-note">
-                  Data mentah. Belum dibandingkan dengan kurva WHO.
+                  Hasil ukur yang kamu simpan, belum dibandingkan dengan kurva
+                  WHO.
                 </p>
               </>
             ) : (
@@ -259,7 +274,8 @@ export function Today() {
                   {rupiah(recipeCost(selectedRecipe, state.menu.substitutions))}
                 </p>
                 <p className="fine-note">
-                  Estimasi contoh, bukan harga pasar waktu nyata.
+                  Harga perkiraan dari data contoh; sesuaikan dengan harga di
+                  sekitarmu.
                 </p>
               </>
             ) : (
@@ -274,8 +290,8 @@ export function Today() {
               <h2>Butuh bantuan?</h2>
             </div>
             <p className="muted">
-              Keluhan berat tidak menunggu formulir. Hubungi layanan darurat
-              setempat atau fasilitas kesehatan terdekat.
+              Jika ada keluhan berat, segera hubungi layanan darurat setempat
+              atau fasilitas kesehatan terdekat.
             </p>
             <a href="#/panduan" className="text-link">
               Baca tanda bahaya
@@ -290,8 +306,8 @@ export function Today() {
         title="Atur prioritas minggu ini"
       >
         <p className="muted modal-lede">
-          Maksimal tiga prioritas aktif. Setiap tugas menyebut alasan dan
-          sumbernya.
+          Pilih hingga tiga prioritas yang paling perlu minggu ini. Pemilik
+          tugas dan tenggatnya bisa kamu sesuaikan.
         </p>
         <div className="picker-section">
           <h3>Prioritas aktif ({active.length}/3)</h3>
@@ -323,8 +339,8 @@ export function Today() {
           ) : null}
           {candidates.length === 0 ? (
             <p className="muted">
-              Semua templat tahap ini sudah dipakai. Prioritas bisa diganti
-              dengan membatalkan yang lama.
+              Semua pilihan untuk tahap ini sudah masuk ke rencana. Batalkan
+              satu prioritas jika ingin menggantinya.
             </p>
           ) : (
             <ul className="picker-list">
@@ -374,7 +390,11 @@ function TaskCard({
             <span className="sr-only">, tenggat {formatDate(task.due)}</span>
           </p>
         </div>
-        {task.status !== "rencana" ? <Badge tone={STATUS_TONE[task.status]}>{STATUS_LABEL[task.status]}</Badge> : null}
+        {task.status !== "rencana" ? (
+          <Badge tone={STATUS_TONE[task.status]}>
+            {STATUS_LABEL[task.status]}
+          </Badge>
+        ) : null}
       </div>
 
       <div className="task-actions">
@@ -405,24 +425,36 @@ function TaskCard({
         <summary>Detail & pilihan</summary>
         <div className="why-body">
           <div className="task-secondary-actions">
-            <button type="button" className="chip" aria-pressed={task.status === "tertunda"} onClick={() => onUpdate(task.id, { status: task.status === "tertunda" ? "rencana" : "tertunda" })}>Tunda tugas</button>
-            <button type="button" className="chip" aria-pressed={task.status === "bantuan"} onClick={() => onUpdate(task.id, { status: task.status === "bantuan" ? "rencana" : "bantuan" })}>Minta bantuan</button>
+            <button
+              type="button"
+              className="chip"
+              aria-pressed={task.status === "tertunda"}
+              onClick={() =>
+                onUpdate(task.id, {
+                  status: task.status === "tertunda" ? "rencana" : "tertunda",
+                })
+              }
+            >
+              Tunda tugas
+            </button>
+            <button
+              type="button"
+              className="chip"
+              aria-pressed={task.status === "bantuan"}
+              onClick={() =>
+                onUpdate(task.id, {
+                  status: task.status === "bantuan" ? "rencana" : "bantuan",
+                })
+              }
+            >
+              Minta bantuan
+            </button>
           </div>
           <p className="why-reason">{task.reason}</p>
           <dl className="meta-list">
             <div>
-              <dt>Aturan</dt>
-              <dd>
-                {task.ruleId} v{task.ruleVersion}
-              </dd>
-            </div>
-            <div>
               <dt>Sumber</dt>
               <dd>{task.source}</dd>
-            </div>
-            <div>
-              <dt>Pemicu</dt>
-              <dd>Profil aktif dan pilihan prioritas pengguna</dd>
             </div>
           </dl>
           <div className="task-fields">

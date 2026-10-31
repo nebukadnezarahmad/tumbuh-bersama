@@ -1,0 +1,980 @@
+/* Working surfaces share the public site's quiet teal and warm paper palette. */
+.app-shell,
+.onboarding {
+  background: #f5f6f1;
+}
+.app-shell .screen {
+  animation: none;
+}
+.app-shell {
+  --max-app: 1440px;
+}
+.app-header {
+  background: #fafbf7ed;
+  border-bottom-color: #dfe5dc;
+}
+.app-header-inner {
+  min-height: 76px;
+  padding-inline: 32px;
+}
+.app-header .brand-mark,
+.onboard-header .brand-mark {
+  background: #174e43;
+  color: #fffaf0;
+}
+.app-header .brand-name,
+.onboard-header .brand-name {
+  font-size: 21px;
+}
+.app-header-meta {
+  gap: 12px;
+}
+.app-header .demo-tag {
+  background: #eaf0e4;
+  border-color: #c6d4c1;
+  color: #375944;
+  font-size: 11px;
+}
+.app-header .stage-pill {
+  border-color: #d4dfd1;
+  padding: 6px 12px;
+  font-size: 12px;
+  background: #fff;
+}
+.app-header .header-name {
+  color: #174e43;
+  background: #e7eee6;
+  border-radius: 7px;
+  max-width: 160px;
+  padding: 8px 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+}
+.app-body {
+  padding-inline: 32px;
+}
+.app-main {
+  padding-top: 28px;
+}
+.app-shell .demo-banner {
+  background: #f2eee2;
+  border: 1px solid #e4decc;
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 12px;
+  color: #665b3e;
+  margin-bottom: 30px;
+}
+.app-shell .demo-banner a {
+  color: #5f4f2c;
+  min-height: 32px;
+}
+.app-shell .screen-head {
+  margin-bottom: 28px;
+}
+.app-shell .screen-head h1 {
+  font-family: var(--font-sans);
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.055em;
+  margin-top: 8px;
+}
+.app-shell .screen-lede {
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 60ch;
+}
+.app-shell .kicker,
+.app-shell .eyebrow {
+  color: #657566;
+  font-size: 11px;
+  text-transform: none;
+  letter-spacing: 0.025em;
+}
+.app-shell .kicker-dot {
+  background: #a65d3f;
+}
+.app-shell .panel,
+.app-shell .focus-panel,
+.app-shell .aside-card,
+.app-shell .done-panel {
+  background: #fffefa;
+  border-color: #dfe4d9;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px #233e241f;
+}
+.app-shell .panel {
+  padding: 28px;
+  box-shadow: none;
+}
+.app-shell .panel-head h2 {
+  font-size: 21px;
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+.app-shell .panel-head h3 {
+  font-size: 16px;
+}
+.app-shell .btn {
+  min-height: 46px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.app-shell .btn-primary,
+.onboarding .btn-primary {
+  background: #174e43;
+  color: #fff;
+}
+.app-shell .btn-primary:hover,
+.onboarding .btn-primary:hover {
+  background: #123e35;
+}
+.app-shell .btn-ghost,
+.onboarding .btn-ghost {
+  border-color: #b9c7b7;
+  background: transparent;
+}
+.app-shell .btn-ghost:hover,
+.onboarding .btn-ghost:hover {
+  background: #edf2e9;
+  border-color: #7d957b;
+}
+.app-shell .text-link,
+.app-shell .text-button {
+  font-size: 12px;
+  color: #174e43;
+}
+.app-shell .chip {
+  font-size: 12px;
+  min-height: 44px;
+}
+.app-shell .chip-action,
+.app-shell .chip[aria-pressed="true"] {
+  background: #e7eee6;
+  color: #174e43;
+  border-color: #a1b69b;
+}
+.app-shell .badge {
+  font-size: 11px;
+  letter-spacing: 0;
+}
+.app-shell .badge-neutral {
+  color: #586353;
+  background: #edf0e8;
+}
+.app-shell .badge-teal {
+  color: #174e43;
+  background: #e7eee6;
+}
+.app-shell .today-overview {
+  background: #e7eee2;
+  border: 1px solid #d7e1cf;
+  border-radius: 12px;
+  padding: 28px 30px;
+  margin-bottom: 24px;
+}
+.app-shell .today-overview h2 {
+  font-size: clamp(25px, 2.5vw, 34px);
+  font-weight: 550;
+  letter-spacing: -0.045em;
+  line-height: 1.25;
+}
+.app-shell .today-overview h2 em {
+  color: #174e43;
+  font-family: var(--font-display);
+  font-weight: 450;
+}
+.app-shell .today-overview p:last-child {
+  font-size: 13px;
+  color: #52674f;
+}
+.app-shell .overview-shortcuts {
+  gap: 8px 22px;
+}
+.app-shell .overview-shortcuts a {
+  font-size: 12px;
+  color: #174e43;
+}
+.app-shell .overview-progress {
+  border-left-color: #bdcdb5;
+  min-width: 116px;
+}
+.app-shell .overview-progress strong {
+  color: #174e43;
+  font-size: 46px;
+}
+.app-shell .overview-progress > span {
+  font-size: 11px;
+}
+.app-shell .focus-panel {
+  padding: 26px 26px 8px;
+}
+.app-shell .focus-head h2 {
+  font-family: var(--font-sans);
+  font-size: clamp(23px, 2.1vw, 29px);
+  font-weight: 600;
+  max-width: 25ch;
+}
+.app-shell .focus-head {
+  margin-bottom: 18px;
+}
+.app-shell .progress-track {
+  height: 5px;
+  background: #e6ece0;
+}
+.app-shell .progress-track span {
+  background: #35715d;
+}
+.app-shell .progress-label {
+  font-size: 11px;
+}
+.app-shell .task-card {
+  padding-block: 23px 15px;
+}
+.app-shell .task-num {
+  width: 28px;
+  height: 28px;
+  color: #174e43;
+  background: #e7eee6;
+  border-radius: 7px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 650;
+}
+.app-shell .task-copy h3 {
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.55;
+}
+.app-shell .task-meta {
+  font-size: 12px;
+  gap: 5px;
+  margin-top: 7px;
+}
+.app-shell .task-actions .chip {
+  min-height: 44px;
+  padding-inline: 13px;
+  font-size: 12px;
+}
+.app-shell .task-why summary {
+  font-size: 12px;
+  color: #527150;
+}
+.app-shell .why-body {
+  background: #f3f5ed;
+  padding: 18px;
+}
+.app-shell .why-reason {
+  font-size: 13px;
+  line-height: 1.75;
+}
+.app-shell .task-fields label {
+  font-size: 12px;
+}
+.app-shell .meta-list dt {
+  font-size: 10px;
+  letter-spacing: 0.03em;
+}
+.app-shell .meta-list dd {
+  font-size: 11px;
+}
+.app-shell .aside-card {
+  padding: 23px;
+  box-shadow: none;
+}
+.app-shell .aside-card h2 {
+  font-size: 13px;
+  letter-spacing: 0;
+}
+.app-shell .aside-card p,
+.app-shell .small-list {
+  font-size: 13px;
+  line-height: 1.65;
+}
+.app-shell .aside-card .stat-value {
+  color: #174e43;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 38px;
+  letter-spacing: -0.05em;
+}
+.app-shell .help-card {
+  background: #f6eadc;
+  border-color: #e6d7c4;
+}
+.app-shell .help-card h2,
+.app-shell .help-card .text-link {
+  color: #875033;
+}
+.app-shell .help-card p {
+  color: #745b46;
+}
+.app-shell .week-note {
+  padding: 6px 0;
+}
+.app-shell .week-note h2 {
+  font-size: 13px;
+}
+.app-shell .week-note p {
+  font-size: 12px;
+  line-height: 1.75;
+}
+.app-shell .field label,
+.app-shell .field legend {
+  font-size: 13px;
+}
+.app-shell .field-hint,
+.onboarding .field-hint {
+  font-size: 12px;
+  line-height: 1.65;
+}
+.app-shell
+  .field
+  input:not([type="radio"]):not([type="checkbox"]):not([type="range"]),
+.app-shell .field select,
+.app-shell .field textarea,
+.onboarding
+  .field
+  input:not([type="radio"]):not([type="checkbox"]):not([type="range"]),
+.onboarding .field select {
+  border-color: #b4c2ac;
+  border-radius: 7px;
+  background: #fff;
+  font-size: 16px;
+  min-height: 48px;
+}
+.app-shell .input-unit,
+.app-shell .sub-select select,
+.app-shell .task-fields select,
+.app-shell .task-fields input {
+  border-color: #b4c2ac;
+}
+.app-shell .input-unit span {
+  background: #eef2e8;
+  font-size: 13px;
+}
+.app-shell .fine-note {
+  font-size: 12px;
+  line-height: 1.65;
+}
+.app-shell .results-head h3 {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.app-shell .results-head .muted {
+  font-size: 12px;
+}
+.app-shell .recipe-title-line h3 {
+  font-size: 23px;
+  color: #274c3c;
+}
+.app-shell .recipe-age,
+.app-shell .recipe-meta,
+.app-shell .recipe-texture,
+.app-shell .stock-line {
+  font-size: 12px;
+}
+.app-shell .recipe-row {
+  padding-block: 22px;
+  gap: 16px;
+}
+.app-shell .stat-card {
+  background: #fffefa;
+  border-color: #dfe4d9;
+  border-radius: 10px;
+}
+.app-shell .stat-label,
+.app-shell .stat-sub {
+  font-size: 12px;
+}
+.app-shell .stat-card .stat-value {
+  color: #174e43;
+  font-family: var(--font-sans);
+  letter-spacing: -0.05em;
+}
+.app-shell .stat-card .stat-unit {
+  font-size: 17px;
+}
+.app-shell .notice-inline {
+  background: #eef2e8;
+  color: #4e6845;
+}
+.app-shell .data-table {
+  font-size: 12px;
+}
+.app-shell .data-table th {
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+.app-shell .empty-state {
+  background: #f3f5ee;
+  border-color: #d9e0d0;
+}
+.app-shell .empty-state .muted {
+  font-size: 13px;
+  line-height: 1.7;
+}
+.app-shell .empty-title {
+  font-size: 16px;
+}
+.app-shell .bottom-nav {
+  background: #fdfef9f5;
+  border-color: #dbe3d4;
+  padding-top: 7px;
+}
+.app-shell .bottom-link {
+  font-size: 11px;
+  gap: 5px;
+  min-height: 56px;
+  border-radius: 10px;
+}
+.app-shell .bottom-link[aria-current="page"] {
+  background: #e7eee6;
+  color: #174e43;
+}
+.app-shell .bottom-dot {
+  background: #a65d3f;
+}
+
+/* Onboarding is a short, readable setup rather than a long profile form. */
+.onboarding {
+  min-height: 100dvh;
+}
+.onboard-header {
+  min-height: 88px;
+  max-width: 1280px;
+  padding-inline: 32px;
+  border-bottom: 1px solid #dde4d7;
+}
+.onboard-header .text-link {
+  font-size: 13px;
+  text-decoration: none;
+}
+.onboard-main {
+  max-width: 1216px;
+  padding: 64px 32px 88px;
+  gap: 80px;
+}
+.onboard-copy {
+  padding-top: 12px;
+}
+.onboard-eyebrow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 12px;
+  color: #526d4d;
+  font-weight: 600;
+  margin-bottom: 23px;
+}
+.onboard-eyebrow > span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #a65d3f;
+}
+.onboard-copy h1 {
+  font-family: var(--font-sans);
+  font-size: clamp(44px, 4.7vw, 64px);
+  font-weight: 550;
+  line-height: 1.06;
+  letter-spacing: -0.065em;
+}
+.onboard-copy h1 em {
+  font-family: var(--font-display);
+  font-weight: 450;
+  letter-spacing: -0.045em;
+  color: #174e43;
+}
+.onboard-copy .lede {
+  max-width: 36ch;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-top: 24px;
+}
+.onboard-route {
+  display: flex;
+  flex-direction: column;
+  margin: 32px 0 18px;
+  gap: 0;
+}
+.onboard-route li {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 17px;
+  padding-bottom: 26px;
+}
+.onboard-route li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 37px;
+  bottom: 3px;
+  width: 1px;
+  background: #d3ddcb;
+}
+.onboard-route li > span {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #ccd8c4;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #768571;
+  font-size: 11px;
+  flex: none;
+}
+.onboard-route li.is-current > span {
+  color: #fff;
+  border-color: #174e43;
+  background: #174e43;
+}
+.onboard-route strong {
+  display: block;
+  font-size: 13px;
+  line-height: 1.4;
+  padding-top: 2px;
+  font-weight: 650;
+}
+.onboard-route p {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #6a7863;
+  line-height: 1.6;
+}
+.onboard-copy > .premium-text-action {
+  color: #174e43;
+  font-size: 13px;
+}
+.onboard-form {
+  background: #fffefa;
+  border: 1px solid #dce3d4;
+  border-radius: 14px;
+  padding: 32px;
+  box-shadow: 0 12px 40px -30px #23463155;
+}
+.onboard-form .field legend {
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  margin-bottom: 22px;
+}
+.onboard-form .stage-picker {
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+.onboard-form .stage-option {
+  min-height: 112px;
+  align-items: flex-start;
+  padding: 16px 12px;
+  border-radius: 8px;
+  border: 1px solid #dce3d4;
+  background: #fffefa;
+  gap: 9px;
+}
+.onboard-form .stage-option:hover {
+  background: #f3f6ee;
+}
+.onboard-form .stage-option.is-selected {
+  border-color: #39745c;
+  background: #eaf0e3;
+}
+.onboard-form .stage-option-title {
+  display: block;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #294c3a;
+}
+.onboard-form .stage-option-desc {
+  font-size: 11px;
+  line-height: 1.65;
+  margin-top: 5px;
+  color: #687660;
+}
+.onboard-form .stage-option-num {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  min-width: 16px;
+  margin-top: 2px;
+  color: #7b8a72;
+}
+.onboard-form .stage-option > .icon {
+  color: #174e43;
+  right: 8px;
+  top: 8px;
+  width: 12px;
+}
+.onboard-form .stage-option.is-selected .stage-option-title {
+  color: #174e43;
+}
+.onboard-stage-focus {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 18px 0 0;
+  color: #4f7149;
+}
+.onboard-stage-focus > svg {
+  margin-top: 3px;
+}
+.onboard-stage-focus span {
+  font-size: 11px;
+  color: #697c60;
+}
+.onboard-stage-focus p {
+  font-size: 12px;
+  margin-top: 4px;
+  line-height: 1.6;
+}
+.onboarding .optional-profile-fields {
+  margin-top: 22px;
+  border-color: #dfe5d7;
+}
+.onboarding .optional-profile-fields summary {
+  font-size: 13px;
+}
+.onboarding .optional-profile-fields summary > span {
+  font-size: 11px;
+}
+.onboarding .onboard-submit {
+  margin-top: 24px;
+}
+.onboarding .onboard-submit .btn {
+  border-radius: 8px;
+  min-height: 50px;
+  font-size: 13px;
+}
+.onboarding .onboard-submit > p {
+  font-size: 11px;
+  color: #67775f;
+}
+.onboarding .existing-profile {
+  background: #eef2e8;
+  color: #4d6345;
+  font-size: 12px;
+}
+
+@media (min-width: 900px) {
+  .app-body {
+    grid-template-columns: 212px minmax(0, 1fr);
+    gap: 34px;
+  }
+  .app-side {
+    padding-top: 30px;
+    padding-right: 22px;
+    top: 100px;
+    border-color: #dce3d5;
+  }
+  .app-shell .side-family {
+    gap: 11px;
+    padding-bottom: 30px;
+  }
+  .app-shell .family-monogram {
+    width: 42px;
+    height: 42px;
+    color: #174e43;
+    background: #dfe8d5;
+    border-radius: 12px;
+    font-size: 21px;
+  }
+  .app-shell .side-family strong {
+    font-size: 13px;
+  }
+  .app-shell .side-family div > span {
+    font-size: 11px;
+    color: #6a7a61;
+  }
+  .app-shell .side-section-label {
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding-left: 12px;
+    color: #7e8a76;
+  }
+  .app-shell .side-nav {
+    gap: 6px;
+  }
+  .app-shell .side-link {
+    min-height: 48px;
+    font-size: 13px;
+    padding-inline: 12px;
+    border-radius: 8px;
+    color: #6a7861;
+  }
+  .app-shell .side-link:hover {
+    background: #eaf0e3;
+  }
+  .app-shell .side-link[aria-current="page"] {
+    background: #174e43;
+    color: #fff;
+  }
+  .app-shell .side-link[aria-current="page"] .nav-count {
+    background: #dbe8d7;
+    color: #174e43;
+  }
+  .app-shell .nav-count {
+    font-size: 11px;
+  }
+  .app-shell .side-note {
+    border-color: #dce3d5;
+    margin-top: 36px;
+    padding-top: 22px;
+  }
+  .app-shell .side-note > svg {
+    color: #8a9b7f;
+    margin-bottom: 10px;
+  }
+  .app-shell .side-note p {
+    font-size: 11px;
+    color: #76836c;
+    line-height: 1.7;
+  }
+  .app-shell .side-note strong {
+    color: #59704f;
+    font-weight: 600;
+  }
+  .app-shell .side-note .text-link {
+    font-size: 11px;
+  }
+  .onboard-main {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+    gap: 80px;
+  }
+}
+@media (min-width: 1080px) {
+  .app-shell .screen-grid {
+    grid-template-columns: minmax(0, 1fr) 250px;
+    gap: 22px;
+  }
+}
+@media (max-width: 1079px) and (min-width: 900px) {
+  .app-body {
+    grid-template-columns: 185px minmax(0, 1fr);
+    gap: 24px;
+    padding-inline: 24px;
+  }
+  .app-side {
+    padding-right: 14px;
+  }
+  .onboard-main {
+    gap: 40px;
+  }
+}
+@media (max-width: 899px) {
+  .app-header-inner {
+    min-height: 68px;
+    padding-inline: 24px;
+  }
+  .app-body {
+    padding-inline: 24px;
+  }
+  .onboard-main {
+    padding-top: 35px;
+    gap: 30px;
+  }
+  .onboard-route {
+    display: none;
+  }
+  .onboard-copy h1 br {
+    display: none;
+  }
+  .onboard-copy h1 em::before {
+    content: " ";
+  }
+  .onboard-copy .lede {
+    max-width: 55ch;
+  }
+  .onboard-eyebrow {
+    margin-bottom: 16px;
+  }
+  .onboard-copy > .premium-text-action {
+    margin-top: 13px;
+  }
+}
+@media (max-width: 599px) {
+  .app-header-inner {
+    min-height: 65px;
+    padding-inline: 18px;
+  }
+  .app-header .brand-name {
+    font-size: 18px;
+  }
+  .app-header .brand-mark {
+    width: 29px;
+    height: 29px;
+  }
+  .app-body {
+    padding-inline: 16px;
+  }
+  .app-main {
+    padding-top: 18px;
+    padding-bottom: 100px;
+  }
+  .app-shell .demo-banner {
+    font-size: 11px;
+    padding: 8px 11px;
+    gap: 1px 8px;
+    margin-bottom: 23px;
+  }
+  .app-shell .screen-head h1 {
+    font-size: 32px;
+  }
+  .app-shell .screen-lede {
+    font-size: 13px;
+  }
+  .app-shell .today-overview {
+    padding: 22px 18px;
+    gap: 15px;
+  }
+  .app-shell .today-overview h2 {
+    font-size: 27px;
+  }
+  .app-shell .overview-shortcuts {
+    gap: 0 12px;
+  }
+  .app-shell .overview-shortcuts a {
+    font-size: 11px;
+  }
+  .app-shell .overview-progress {
+    min-width: 70px;
+    padding-left: 15px;
+  }
+  .app-shell .overview-progress strong {
+    font-size: 37px;
+  }
+  .app-shell .overview-progress > span {
+    max-width: 7ch;
+    display: block;
+    font-size: 10px;
+  }
+  .app-shell .focus-panel,
+  .app-shell .panel {
+    padding: 21px 17px;
+  }
+  .app-shell .focus-panel {
+    padding-bottom: 5px;
+  }
+  .app-shell .focus-head h2 {
+    font-size: 24px;
+  }
+  .app-shell .focus-head {
+    gap: 15px;
+  }
+  .app-shell .task-top {
+    gap: 9px;
+  }
+  .app-shell .task-copy h3 {
+    font-size: 14px;
+  }
+  .app-shell .task-actions {
+    padding-left: 37px;
+    margin-top: 13px;
+  }
+  .app-shell .task-why {
+    padding-left: 37px;
+  }
+  .app-shell .task-why[open] {
+    padding-left: 0;
+  }
+  .app-shell .task-why[open] summary {
+    padding-left: 37px;
+  }
+  .app-shell .task-fields {
+    grid-template-columns: 1fr;
+  }
+  .app-shell .task-fields select,
+  .app-shell .task-fields input {
+    font-size: 16px;
+  }
+  .app-shell .task-meta {
+    font-size: 11px;
+  }
+  .app-shell .panel-head h2 {
+    font-size: 21px;
+  }
+  .app-shell .stat-cards {
+    gap: 7px;
+  }
+  .app-shell .stat-card {
+    padding: 14px 11px;
+  }
+  .app-shell .stat-label,
+  .app-shell .stat-sub {
+    font-size: 11px;
+  }
+  .app-shell .stat-card .stat-value {
+    font-size: 28px;
+  }
+  .app-shell .stat-card .stat-unit {
+    font-size: 13px;
+  }
+  .onboard-header {
+    min-height: 72px;
+    padding-inline: 20px;
+  }
+  .onboard-header .brand-name {
+    font-size: 18px;
+  }
+  .onboard-main {
+    padding: 30px 20px 48px;
+    gap: 26px;
+  }
+  .onboard-copy {
+    padding-top: 0;
+  }
+  .onboard-copy h1 {
+    font-size: 43px;
+  }
+  .onboard-copy .lede {
+    font-size: 14px;
+    margin-top: 19px;
+  }
+  .onboard-form {
+    padding: 24px 18px;
+  }
+  .onboard-form .stage-picker {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .onboard-form .stage-option {
+    min-height: 83px;
+    padding: 14px 12px;
+  }
+  .onboard-form .stage-option-title {
+    font-size: 13px;
+  }
+  .onboard-form .stage-option-desc {
+    font-size: 12px;
+  }
+  .onboard-form .stage-option-num {
+    min-width: 21px;
+  }
+  .onboard-stage-focus span {
+    font-size: 11px;
+  }
+  .onboarding .optional-profile-fields summary {
+    font-size: 12px;
+  }
+  .onboarding .optional-profile-fields summary > span {
+    gap: 7px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell .screen {
+    animation: none;
+  }
+}
+@media print {
+  .app-shell {
+    background: white;
+  }
+  .app-shell .panel,
+  .app-shell .aside-card {
+    box-shadow: none;
+  }
+}

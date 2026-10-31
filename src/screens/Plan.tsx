@@ -1,10 +1,5 @@
 import { useMemo, useState } from "react";
-import {
-  ALLERGENS,
-  PANTRY_ITEMS,
-  RECIPES,
-  STAGES,
-} from "../data";
+import { ALLERGENS, PANTRY_ITEMS, RECIPES, STAGES } from "../data";
 import { taskFromTitle, useStore } from "../store";
 import type { MenuState } from "../types";
 import {
@@ -21,12 +16,7 @@ import {
   recipeLines,
   shoppingList,
 } from "../lib/menu";
-import {
-  Badge,
-  EmptyState,
-  Icon,
-  SectionHead,
-} from "../components/ui";
+import { Badge, EmptyState, Icon, SectionHead } from "../components/ui";
 
 export function Plan() {
   const { state, setState, addTask } = useStore();
@@ -145,7 +135,9 @@ export function Plan() {
       return;
     }
     if (conflicts.length > 0) {
-      setAssignError("Ganti bahan yang bentrok dengan alergi sebelum menugaskan.");
+      setAssignError(
+        "Ganti bahan yang bentrok dengan alergi sebelum menugaskan.",
+      );
       return;
     }
     addTask(
@@ -176,8 +168,8 @@ export function Plan() {
           <p className="kicker">Rencana</p>
           <h1>Rencana minggu ini.</h1>
           <p className="lede screen-lede">
-            Pilih menu dari bahan yang ada, bagi tugas belanja, lalu jalankan
-            tiga prioritas.
+            Cek prioritas keluarga, pilih menu dari bahan di rumah, lalu siapkan
+            daftar belanja.
           </p>
         </div>
         {stage ? (
@@ -191,7 +183,7 @@ export function Plan() {
         <div className="panel-head">
           <div>
             <p className="kicker">Prioritas</p>
-            <h2 id="plan-tasks-title">Yang dijalankan minggu ini</h2>
+            <h2 id="plan-tasks-title">Prioritas keluargamu</h2>
           </div>
           <a href="#/hari-ini" className="text-link">
             Atur di Hari Ini
@@ -199,8 +191,8 @@ export function Plan() {
         </div>
         {activeTasks.length === 0 ? (
           <EmptyState title="Belum ada prioritas aktif">
-            Tambah satu tugas dari halaman Hari Ini agar rencana punya langkah
-            pertama.
+            Pilih prioritas di halaman Hari Ini. Tugas dan penanggung jawabnya
+            akan muncul di sini.
           </EmptyState>
         ) : (
           <ul className="compact-list">
@@ -222,11 +214,15 @@ export function Plan() {
           title="Cari menu yang bisa dimasak hari ini"
           lede={
             childAge !== null
-              ? `Disaring untuk usia ${childAge} bulan. Estimasi bahan memakai data contoh.`
+              ? `Pilihan untuk usia ${childAge} bulan, waktu memasak, dan anggaranmu. Harga memakai data contoh.`
               : "Tanggal lahir anak belum diisi. Menu ditampilkan untuk contoh usia 24 bulan."
           }
           action={
-            <button type="button" className="text-button" onClick={resetFilters}>
+            <button
+              type="button"
+              className="text-button"
+              onClick={resetFilters}
+            >
               Atur ulang saringan
             </button>
           }
@@ -265,7 +261,7 @@ export function Plan() {
               }
             />
             <span className="field-hint">
-              Estimasi contoh. Harga lokal diisi dan diperbarui pengguna.
+              Perkiraan dari data contoh. Harga bahan di sekitarmu bisa berbeda.
             </span>
           </div>
         </div>
@@ -330,7 +326,7 @@ export function Plan() {
 
         <div className="results-head">
           <h3>
-            {matches.length} menu lolos saringan
+            {matches.length} menu sesuai pilihanmu
             {matches.length > 3 && !showAll ? ", 3 teratas" : ""}
           </h3>
           <span className="muted">
@@ -348,13 +344,13 @@ export function Plan() {
                 className="btn btn-ghost btn-small"
                 onClick={resetFilters}
               >
-                Longgarkan saringan
+                Atur ulang saringan
               </button>
             }
           >
-            Coba tambah waktu memasak, naikkan anggaran, atau hapus pilihan
-            alergi. Bila alergi tetap ada, jangan pilih menu yang mengandung
-            bahan tersebut.
+            Coba tambah waktu memasak atau naikkan anggaran. Atur ulang akan
+            mengosongkan pilihan alergi; pilih kembali bahan yang perlu
+            dihindari.
           </EmptyState>
         ) : (
           <>
@@ -421,7 +417,10 @@ export function Plan() {
       </section>
 
       {selected ? (
-        <section className="panel selected-recipe" aria-labelledby="selected-title">
+        <section
+          className="panel selected-recipe"
+          aria-labelledby="selected-title"
+        >
           <div className="panel-head">
             <div>
               <p className="kicker">Menu terpilih</p>
@@ -513,8 +512,8 @@ export function Plan() {
               </ul>
               <p className="fine-note">
                 Estimasi {rupiah(selectedCost)} untuk {selected.servings} porsi.
-                Harga contoh, bukan data pasar waktu nyata. Perubahan bahan
-                menghitung ulang estimasi.
+                Harga memakai data contoh. Perkiraan biaya ikut berubah saat
+                kamu mengganti bahan.
               </p>
             </div>
 
@@ -540,7 +539,8 @@ export function Plan() {
               Tugaskan belanja ke pengasuh
             </button>
             <span className="fine-note">
-              Tugas muncul di Hari Ini dengan alasan, sumber, dan tenggat.
+              Tugas belanja akan tersimpan di Hari Ini. Pengasuh tidak menerima
+              pesan atau notifikasi.
             </span>
           </div>
           {assignError ? (

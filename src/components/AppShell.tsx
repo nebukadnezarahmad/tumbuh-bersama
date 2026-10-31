@@ -15,10 +15,7 @@ const NAV: Array<{ id: Screen; label: string; icon: string }> = [
 
 export function Brand({ compact = false }: { compact?: boolean }) {
   return (
-    <a
-      className="brand"
-      href="#/"
-    >
+    <a className="brand" href="#/">
       <span className="brand-mark" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="15" height="15" fill="none">
           <path
@@ -70,8 +67,13 @@ export function AppShell({
       <div className="app-body">
         <aside className="app-side" aria-label="Navigasi samping">
           <div className="side-family">
-            <span className="family-monogram" aria-hidden="true">{state.profile?.motherName.slice(0, 1).toUpperCase() || "K"}</span>
-            <div><strong>Keluarga {state.profile?.motherName || "kita"}</strong><span>{stage?.short || "Ruang keluarga"}</span></div>
+            <span className="family-monogram" aria-hidden="true">
+              {state.profile?.motherName.slice(0, 1).toUpperCase() || "K"}
+            </span>
+            <div>
+              <strong>Keluarga {state.profile?.motherName || "kita"}</strong>
+              <span>{stage?.short || "Ruang keluarga"}</span>
+            </div>
           </div>
           <p className="side-section-label">Ruang keluarga</p>
           <nav aria-label="Navigasi aplikasi">
@@ -96,9 +98,10 @@ export function AppShell({
             </ul>
           </nav>
           <div className="side-note">
+            <Icon name="shield" size={21} />
             <p>
-              <strong>Purwarupa.</strong> Materi dan angka adalah contoh. Bukan
-              layanan kesehatan.
+              <strong>Ruang yang pribadi.</strong> Catatan tersimpan di
+              perangkat ini.
             </p>
             <a href="#/" className="text-link">
               Kembali ke beranda

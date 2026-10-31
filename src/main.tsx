@@ -6,7 +6,8 @@ import "@fontsource-variable/manrope/wght.css";
 import "./styles.css";
 import "./journal.css";
 import "./premium.css";
-import "./taste.css";
+import "./app-polish.css";
+import "./landing.css";
 import App from "./App";
 import { StoreProvider } from "./store";
 

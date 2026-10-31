@@ -63,7 +63,7 @@ export function Family() {
     setInviteName("");
     setInviteEmail("");
     setInvited(
-      "Undangan dibuat dengan masa berlaku tujuh hari. Di demo, undangan tidak dikirim lewat email.",
+      "Contoh undangan tersimpan selama tujuh hari. Tidak ada email yang dikirim.",
     );
   };
 
@@ -86,10 +86,10 @@ export function Family() {
       <header className="screen-head">
         <div>
           <p className="kicker">Keluarga</p>
-          <h1>Profil, izin, dan data.</h1>
+          <h1>Ruang keluargamu.</h1>
           <p className="lede screen-lede">
-            Atur siapa yang melihat apa, kapan diingatkan, dan cara membawa
-            data keluar.
+            Perbarui profil, atur pilihan keluarga, dan simpan salinan
+            catatanmu.
           </p>
         </div>
         <div className="head-meta">
@@ -106,7 +106,7 @@ export function Family() {
           <SectionHead
             kicker="Profil"
             title="Data keluarga"
-            lede="Hanya data minimum. Nama panggilan dan tanggal bisa dikoreksi."
+            lede="Lengkapi seperlunya. Nama, tanggal, dan tahap keluarga bisa kamu ubah kapan saja."
           />
           <form onSubmit={saveProfile} className="profile-form">
             <div className="field-row">
@@ -168,7 +168,7 @@ export function Family() {
                     }}
                   />
                   <span className="field-hint">
-                    Dipakai untuk usia dan sumbu grafik.
+                    Untuk menghitung usia pada catatan pertumbuhan.
                   </span>
                 </div>
               </div>
@@ -194,8 +194,8 @@ export function Family() {
         <section className="panel" aria-labelledby="caregiver-title">
           <SectionHead
             kicker="Pengasuh"
-            title="Bagikan seperlunya"
-            lede="Undangan opsional. Akun tunggal tetap bisa memakai seluruh fitur inti."
+            title="Coba pembagian peran"
+            lede="Undangan ini hanya simulasi. Tidak ada email atau catatan yang dikirim kepada pengasuh."
           />
 
           {state.caregivers.length === 0 ? (
@@ -211,7 +211,9 @@ export function Family() {
                     <span className="caregiver-name">{caregiver.name}</span>
                     <span className="field-hint">{caregiver.email}</span>
                     <span className="field-hint">
-                      {caregiver.status === "aktif" ? "Akses aktif" : "Menunggu"}
+                      {caregiver.status === "aktif"
+                        ? "Akses aktif"
+                        : "Menunggu"}
                       {" · berlaku sampai "}
                       {formatDate(caregiver.expiresAt)}
                     </span>
@@ -259,8 +261,8 @@ export function Family() {
             </form>
           ) : (
             <p className="fine-note">
-              Purwarupa membatasi satu pengasuh. Cabut akses untuk mengundang
-              orang lain.
+              Simulasi ini memuat satu pengasuh. Cabut akses jika ingin mencoba
+              dengan orang lain.
             </p>
           )}
           {invited ? (
@@ -273,8 +275,8 @@ export function Family() {
         <section className="panel" aria-labelledby="consent-title">
           <SectionHead
             kicker="Izin"
-            title="Siapa melihat apa"
-            lede="Data ibu privat secara bawaan. Izin dapat dicabut kapan saja."
+            title="Pilihan berbagi catatan"
+            lede="Coba pilih catatan yang ingin dibagikan. Pengaturan ini tersimpan di perangkatmu dan belum memberi akses kepada orang lain."
           />
           <div className="toggle-stack">
             <Toggle
@@ -303,35 +305,35 @@ export function Family() {
             />
           </div>
           <p className="fine-note">
-            Di rilis nyata, pencabutan izin berlaku di server. File yang sudah
-            diunduh penerima tidak dapat ditarik kembali.
+            Catatan ibu tidak dibagikan secara bawaan. Kamu bisa mengubah
+            pilihan ini kapan saja.
           </p>
         </section>
 
         <section className="panel" aria-labelledby="notif-title">
           <SectionHead
             kicker="Notifikasi"
-            title="Pengingat yang tidak membebani"
-            lede="Maksimal tiga prioritas aktif. Notifikasi bisa ditunda atau dimatikan."
+            title="Atur pilihan pengingat"
+            lede="Pilihanmu disimpan di perangkat ini. Belum ada notifikasi yang dikirim."
           />
           <div className="toggle-stack">
             <Toggle
               checked={state.notifications.weekly}
               onChange={(value) => setNotification("weekly", value)}
               label="Ringkasan mingguan"
-              description="Satu pesan berisi prioritas minggu ini."
+              description="Pilihan untuk menerima ringkasan prioritas mingguan."
             />
             <Toggle
               checked={state.notifications.visits}
               onChange={(value) => setNotification("visits", value)}
               label="Pengingat kunjungan"
-              description="Mengikuti jadwal yang dimasukkan pengguna."
+              description="Pilihan pengingat sesuai jadwal kunjunganmu."
             />
             <Toggle
               checked={state.notifications.growth}
               onChange={(value) => setNotification("growth", value)}
               label="Pengingat pengukuran"
-              description="Saran mencatat, bukan penilaian status gizi."
+              description="Pilihan pengingat untuk mencatat pengukuran."
             />
             <Toggle
               checked={state.notifications.lockScreenDetail}
@@ -345,11 +347,15 @@ export function Family() {
         <section className="panel" aria-labelledby="data-title">
           <SectionHead
             kicker="Data"
-            title="Ekspor, ulang, atau hapus"
-            lede="Data demo tersimpan di localStorage peramban ini. Tidak ada server."
+            title="Simpan salinan atau kelola data"
+            lede="Catatan tersimpan di peramban perangkat ini, tanpa akun atau sinkronisasi. Unduh salinan jika ingin menyimpannya di tempat lain."
           />
           <div className="data-actions">
-            <button type="button" className="btn btn-ghost" onClick={exportData}>
+            <button
+              type="button"
+              className="btn btn-ghost"
+              onClick={exportData}
+            >
               <Icon name="download" size={17} />
               Unduh data JSON
             </button>
@@ -381,34 +387,34 @@ export function Family() {
         <section className="panel about-panel" aria-labelledby="about-title">
           <SectionHead
             kicker="Tentang"
-            title="Batas purwarupa"
-            lede="Dibangun dari Rancangan Website TumbuhBersama 1.0, 20 Oktober 2026."
+            title="Tentang versi ini"
+            lede="Pendamping rencana keluarga dari persiapan kehamilan hingga balita. Versi ini memakai penyimpanan di perangkatmu."
           />
           <div className="about-columns">
             <div>
               <h3>Sudah ada di demo</h3>
               <ul className="small-list">
-                <li>Profil tahap dan data minimum</li>
+                <li>Profil sesuai tahap keluarga</li>
                 <li>Tiga prioritas dengan alasan dan pemilik</li>
                 <li>Menu lokal, pengganti bahan, daftar belanja</li>
-                <li>Pengukuran mentah dan ringkasan konsultasi</li>
-                <li>Izin pengasuh dan pengaturan notifikasi</li>
+                <li>Riwayat pengukuran dan ringkasan konsultasi</li>
+                <li>Simulasi izin pengasuh dan pilihan pengingat</li>
               </ul>
             </div>
             <div>
               <h3>Tidak termasuk</h3>
               <ul className="small-list">
                 <li>Diagnosis, dosis, atau prediksi IQ</li>
-                <li>Kategori z-score dan kurva interpretatif</li>
-                <li>Akun nyata, server, dan integrasi layanan</li>
+                <li>Penilaian status gizi dari grafik</li>
+                <li>Akun dan sinkronisasi antarperangkat</li>
                 <li>Materi yang sudah ditelaah tenaga kesehatan</li>
-                <li>Komunitas, marketplace, dan AI</li>
+                <li>Pengiriman undangan dan notifikasi</li>
               </ul>
             </div>
           </div>
           <p className="fine-note">
-            Angka, menu, harga, dan jadwal adalah contoh untuk menguji alur.
-            Bukan bukti manfaat klinis.
+            Keluarga demo, menu, harga, dan jadwal memakai data contoh. Gunakan
+            catatanmu sebagai bekal berdiskusi dengan tenaga kesehatan.
           </p>
         </section>
       </div>

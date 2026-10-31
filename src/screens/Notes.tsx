@@ -9,7 +9,6 @@ import {
   formatDate,
   formatShortDate,
   numberId,
-  rupiah,
   todayISO,
 } from "../lib/date";
 import {
@@ -57,14 +56,17 @@ export function Notes() {
   const birthDate = profile?.childBirthDate ?? "";
 
   const sorted = useMemo(
-    () =>
-      [...state.measurements].sort((a, b) => b.date.localeCompare(a.date)),
+    () => [...state.measurements].sort((a, b) => b.date.localeCompare(a.date)),
     [state.measurements],
   );
   const weightSeries = growthSeries(sorted, birthDate, "weightKg");
   const heightSeries = growthSeries(sorted, birthDate, "heightCm");
-  const weightNow = [...weightSeries].sort((a, b) => b.ageMonths - a.ageMonths)[0];
-  const heightNow = [...heightSeries].sort((a, b) => b.ageMonths - a.ageMonths)[0];
+  const weightNow = [...weightSeries].sort(
+    (a, b) => b.ageMonths - a.ageMonths,
+  )[0];
+  const heightNow = [...heightSeries].sort(
+    (a, b) => b.ageMonths - a.ageMonths,
+  )[0];
 
   const filtered = useMemo(() => {
     const sortedAsc = [...state.measurements].sort((a, b) =>
@@ -98,7 +100,7 @@ export function Notes() {
       source: draft.source,
     });
     setSaved(
-      "Pengukuran tersimpan. Data mentah disimpan, interpretasi tetap ditahan.",
+      "Pengukuran tersimpan. Lihat riwayatnya di bawah atau sertakan dalam ringkasan konsultasi.",
     );
   };
 
@@ -163,8 +165,8 @@ export function Notes() {
           <p className="kicker">Catatan</p>
           <h1>Catatan tumbuh dan konsultasi.</h1>
           <p className="lede screen-lede">
-            Simpan hasil ukur apa adanya. Siapkan ringkasan sebelum berbicara
-            dengan tenaga kesehatan.
+            Simpan hasil pengukuran dan siapkan pertanyaan untuk kunjungan
+            berikutnya.
           </p>
         </div>
         {stage ? (
@@ -219,7 +221,7 @@ export function Notes() {
               }
               action={
                 birthDate ? (
-                  <Badge tone="neutral">Data mentah</Badge>
+                  <Badge tone="neutral">Hasil ukur</Badge>
                 ) : (
                   <a href="#/keluarga" className="text-link">
                     Isi tanggal lahir
@@ -230,8 +232,8 @@ export function Notes() {
 
             {!birthDate ? (
               <p className="notice-inline">
-                Catat tanggal lahir anak di halaman Keluarga sebelum
-                menambahkan pengukuran. Ini mencegah sumbu usia yang keliru.
+                Catat tanggal lahir anak di halaman Keluarga sebelum menambahkan
+                pengukuran agar usia pada grafik sesuai.
               </p>
             ) : (
               <form className="measure-form" onSubmit={submit} noValidate>
@@ -377,7 +379,8 @@ export function Notes() {
                     }
                   />
                   <span>
-                    Saya sudah memeriksa angka, satuan, tanggal, dan posisi ukur.
+                    Saya sudah memeriksa angka, satuan, tanggal, dan posisi
+                    ukur.
                   </span>
                 </label>
                 <FieldError>{errors.confirmed}</FieldError>
@@ -387,7 +390,7 @@ export function Notes() {
                     Simpan pengukuran
                   </button>
                   <span className="fine-note">
-                    Data mentah disimpan dengan tanggal dan sumber.
+                    Tersimpan bersama tanggal dan sumber pengukuran.
                   </span>
                 </div>
                 {saved ? (
@@ -402,8 +405,8 @@ export function Notes() {
           <section className="panel" aria-labelledby="chart-title">
             <SectionHead
               kicker="Grafik"
-              title="Data mentah pertumbuhan"
-              lede="Belum dibandingkan dengan kurva WHO. Interpretasi z-score ditahan sampai perhitungan dan penelaahan selesai."
+              title="Riwayat pertumbuhan"
+              lede="Lihat perubahan hasil ukur dari waktu ke waktu. Grafik ini belum dibandingkan dengan kurva WHO; bawa catatannya saat berkonsultasi."
             />
             <div className="chart-grid">
               <Chart
@@ -421,9 +424,8 @@ export function Notes() {
             </div>
             <p className="chart-note">
               <Icon name="info" size={16} />
-              Satu titik bukan tren. Grafik membantu melihat catatan, bukan
-              menilai status gizi. Kategori antropometri juga bukan diagnosis
-              penyebab.
+              Satu titik belum menunjukkan tren. Grafik ini menampilkan hasil
+              ukur, bukan penilaian status gizi atau diagnosis.
             </p>
           </section>
 
@@ -485,7 +487,10 @@ export function Notes() {
             )}
           </section>
 
-          <section className="panel summary-builder" aria-labelledby="summary-title">
+          <section
+            className="panel summary-builder"
+            aria-labelledby="summary-title"
+          >
             <SectionHead
               kicker="Ringkasan"
               title="Siapkan catatan untuk konsultasi"
@@ -508,7 +513,9 @@ export function Notes() {
                 </select>
               </div>
               <div className="field">
-                <label htmlFor="visit-note">Catatan untuk tenaga kesehatan</label>
+                <label htmlFor="visit-note">
+                  Catatan untuk tenaga kesehatan
+                </label>
                 <textarea
                   id="visit-note"
                   rows={3}
@@ -637,40 +644,40 @@ export function Notes() {
               </div>
 
               <p className="print-foot">
-                Disusun pengguna dari catatan sendiri. Bukan diagnosis. Data
-                pada purwarupa ini adalah contoh.
+                Disusun dari catatan keluarga. Bukan diagnosis.
+                {state.demo ? " Memuat data contoh." : ""}
               </p>
             </article>
 
             <p className="fine-note">
-              File yang sudah diunduh tidak bisa ditarik kembali. Tinjau isi
-              sebelum membagikan.
+              Periksa catatan yang ingin kamu bagikan. Salinan yang sudah
+              diberikan kepada orang lain tidak bisa ditarik kembali.
             </p>
           </section>
         </div>
 
         <aside className="screen-aside" aria-label="Panduan catatan">
           <section className="aside-card">
-            <h2>Aturan data</h2>
+            <h2>Sebelum menyimpan</h2>
             <ul className="small-list">
-              <li>Data mentah tidak ditimpa saat koreksi.</li>
-              <li>Tanggal dan satuan diperiksa sebelum simpan.</li>
-              <li>Kategori tidak muncul saat data belum lengkap.</li>
-              <li>Ekspor hanya setelah pengguna meninjau pratinjau.</li>
+              <li>Gunakan hasil pengukuran, bukan perkiraan.</li>
+              <li>Periksa tanggal dan satuan.</li>
+              <li>Catat posisi serta sumber pengukuran.</li>
+              <li>Tinjau ringkasan sebelum dibagikan.</li>
             </ul>
           </section>
           <section className="aside-card">
-            <h2>Batas interpretasi</h2>
+            <h2>Baca bersama tenaga kesehatan</h2>
             <p className="muted">
               Berat badan rendah belum tentu stunting. Indikator BB/U dan PB/U
               menjawab hal berbeda. Penilaian penyebab butuh tenaga kesehatan.
             </p>
           </section>
           <section className="aside-card">
-            <h2>Biaya contoh</h2>
+            <h2>Siap untuk kunjungan</h2>
             <p className="muted">
-              Estimasi menu memakai {rupiah(9000)} sampai {rupiah(26000)} per
-              resep. Bukan harga pasar waktu nyata.
+              Pilih catatan yang ingin dibawa, tambahkan pertanyaan, lalu cetak
+              atau unduh ringkasan di bagian konsultasi.
             </p>
           </section>
         </aside>
@@ -815,11 +822,7 @@ function Chart({
                 {tick}
               </text>
             ))}
-            <text
-              x={padding.left}
-              y={height - 1}
-              className="chart-axis-title"
-            >
+            <text x={padding.left} y={height - 1} className="chart-axis-title">
               Usia (bulan)
             </text>
             <path d={path} className="chart-line" style={{ stroke: color }} />
